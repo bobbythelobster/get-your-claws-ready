@@ -167,6 +167,38 @@ style: |
     box-shadow: 0 0 10px rgba(69, 223, 132, 0.7);
   }
 
+  /* scattered lobsters for slide 8 */
+  .edge-lob { position: absolute; font-size: 42px; pointer-events: none; z-index: 20; font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; }
+  .edge-lob img.emoji { display: none; }
+  .edge-lob::after { content: '🦞'; }
+
+  /* top edge */
+  .edge-lob.t1 { top: 12px; left: 24px; transform: rotate(-30deg); }
+  .edge-lob.t2 { top: 8px; left: 180px; transform: rotate(15deg) scaleX(-1); }
+  .edge-lob.t3 { top: 20px; left: 380px; transform: rotate(-8deg); }
+  .edge-lob.t4 { top: 6px; left: 580px; transform: rotate(22deg) scaleX(-1); }
+  .edge-lob.t5 { top: 14px; left: 760px; transform: rotate(-18deg); }
+  .edge-lob.t6 { top: 10px; left: 960px; transform: rotate(10deg); }
+  .edge-lob.t7 { top: 18px; right: 60px; transform: rotate(-25deg) scaleX(-1); }
+
+  /* bottom edge */
+  .edge-lob.b1 { bottom: 130px; left: 20px; transform: rotate(20deg); }
+  .edge-lob.b2 { bottom: 140px; left: 200px; transform: rotate(-12deg) scaleX(-1); }
+  .edge-lob.b3 { bottom: 128px; right: 200px; transform: rotate(16deg); }
+  .edge-lob.b4 { bottom: 135px; right: 40px; transform: rotate(-22deg) scaleX(-1); }
+
+  /* left edge */
+  .edge-lob.le1 { top: 100px; left: 14px; transform: rotate(35deg); }
+  .edge-lob.le2 { top: 220px; left: 18px; transform: rotate(-20deg) scaleX(-1); }
+  .edge-lob.le3 { top: 360px; left: 12px; transform: rotate(12deg); }
+  .edge-lob.le4 { top: 480px; left: 20px; transform: rotate(-28deg) scaleX(-1); }
+
+  /* right edge */
+  .edge-lob.re1 { top: 90px; right: 18px; transform: rotate(-14deg); }
+  .edge-lob.re2 { top: 210px; right: 14px; transform: rotate(25deg) scaleX(-1); }
+  .edge-lob.re3 { top: 350px; right: 20px; transform: rotate(-8deg); }
+  .edge-lob.re4 { top: 470px; right: 16px; transform: rotate(18deg) scaleX(-1); }
+
   section.hostinger .split {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
@@ -381,6 +413,8 @@ Welcome to the future of personal AI.
   <div class="step done"><div class="dot"></div> Choose Model</div>
   <div class="step done"><div class="dot"></div> Setup Discord</div>
 </div>
+
+<span class="edge-lob t1">🦞</span><span class="edge-lob t2">🦞</span><span class="edge-lob t3">🦞</span><span class="edge-lob t4">🦞</span><span class="edge-lob t5">🦞</span><span class="edge-lob t6">🦞</span><span class="edge-lob t7">🦞</span><span class="edge-lob b1">🦞</span><span class="edge-lob b2">🦞</span><span class="edge-lob b3">🦞</span><span class="edge-lob b4">🦞</span><span class="edge-lob le1">🦞</span><span class="edge-lob le2">🦞</span><span class="edge-lob le3">🦞</span><span class="edge-lob le4">🦞</span><span class="edge-lob re1">🦞</span><span class="edge-lob re2">🦞</span><span class="edge-lob re3">🦞</span><span class="edge-lob re4">🦞</span>
 
 <!--
 Speaker notes:
