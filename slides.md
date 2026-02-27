@@ -62,7 +62,7 @@ style: |
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 100px;
+    bottom: 124px;
     text-align: center;
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -72,12 +72,18 @@ style: |
 
   .progress-bar {
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 72px;
+    right: 72px;
     bottom: 68px;
-    display: flex;
-    gap: 8px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 5px;
+    padding: 5px;
+    border-radius: 999px;
+    background: rgba(10, 16, 28, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
     z-index: 5;
   }
 
@@ -101,47 +107,47 @@ style: |
   .progress-bar .step {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.62);
     text-shadow: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    min-height: 30px;
+    padding: 0 8px;
   }
 
   .progress-bar .step.active {
-    color: #ffffff;
+    color: #2c1600;
     font-weight: 700;
+    background: linear-gradient(90deg, #ff9f45 0%, #ffd27a 100%);
   }
 
   .progress-bar .step.done {
-    color: #b9ffd1;
+    color: #062715;
     font-weight: 700;
+    background: linear-gradient(90deg, #45df84 0%, #93ffc0 100%);
   }
 
   .progress-bar .dot {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.28);
+    background: currentColor;
+    opacity: 0.75;
     flex-shrink: 0;
   }
 
   .progress-bar .step.active .dot {
-    width: auto;
-    height: auto;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    line-height: 1;
-  }
-
-  .progress-bar .step.active .dot::before {
-    content: '🦞';
-    font-size: 14px;
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(255, 145, 58, 0.75);
   }
 
   .progress-bar .step.done .dot {
-    background: #6dff9f;
-    box-shadow: 0 0 8px rgba(109, 255, 159, 0.45);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(69, 223, 132, 0.7);
   }
 
   section.hostinger .split {
@@ -349,6 +355,15 @@ Pairing:
 Your agent is live. You just built something powerful.
 
 Welcome to the future of personal AI.
+
+<div class="clawgress-label">🦞 Clawgress Bar</div>
+
+<div class="progress-bar">
+  <div class="step done"><div class="dot"></div> Get Server</div>
+  <div class="step done"><div class="dot"></div> Install</div>
+  <div class="step done"><div class="dot"></div> Choose Model</div>
+  <div class="step done"><div class="dot"></div> Setup Discord</div>
+</div>
 
 <!--
 Speaker notes:
