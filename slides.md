@@ -83,7 +83,7 @@ style: |
     background: rgba(10, 16, 28, 0.74);
     border: 1px solid rgba(255, 255, 255, 0.24);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
-    overflow: hidden;
+    overflow: visible;
     z-index: 5;
   }
 
@@ -120,10 +120,27 @@ style: |
   }
 
   .progress-bar .step.active {
+    position: relative;
     color: #2c1600;
     font-weight: 700;
     background: linear-gradient(90deg, #ff9f45 0%, #ffd27a 100%);
+    overflow: visible;
   }
+
+  .progress-bar .step.active .lob {
+    position: absolute;
+    font-size: 28px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.45));
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .progress-bar .step.active .lob.l1 { left: 2%;  top: -20px; transform: rotate(-25deg); }
+  .progress-bar .step.active .lob.l2 { left: 18%; top: -10px; transform: rotate(12deg) scaleX(-1); }
+  .progress-bar .step.active .lob.l3 { left: 40%; top: -22px; transform: rotate(-6deg); }
+  .progress-bar .step.active .lob.l4 { left: 60%; top: -12px; transform: rotate(20deg) scaleX(-1); }
+  .progress-bar .step.active .lob.l5 { left: 80%; top: -18px; transform: rotate(-15deg); }
 
   .progress-bar .step.done {
     color: #062715;
@@ -213,7 +230,7 @@ Pick a region close to you, add your SSH key, and confirm you can connect from y
 <div class="clawgress-label">🦞 Clawgress Bar</div>
 
 <div class="progress-bar">
-  <div class="step active"><div class="dot"></div> Get Server</div>
+  <div class="step active"><span class="lob l1">🦞</span><span class="lob l2">🦞</span><span class="lob l3">🦞</span><span class="lob l4">🦞</span><span class="lob l5">🦞</span><div class="dot"></div> Get Server</div>
   <div class="step"><div class="dot"></div> Install</div>
   <div class="step"><div class="dot"></div> Choose Model</div>
   <div class="step"><div class="dot"></div> Setup Discord</div>
@@ -238,7 +255,7 @@ The install script handles Node.js, dependencies, and the onboarding wizard — 
 
 <div class="progress-bar">
   <div class="step done"><div class="dot"></div> Get Server</div>
-  <div class="step active"><div class="dot"></div> Install</div>
+  <div class="step active"><span class="lob l1">🦞</span><span class="lob l2">🦞</span><span class="lob l3">🦞</span><span class="lob l4">🦞</span><span class="lob l5">🦞</span><div class="dot"></div> Install</div>
   <div class="step"><div class="dot"></div> Choose Model</div>
   <div class="step"><div class="dot"></div> Setup Discord</div>
 </div>
@@ -280,7 +297,7 @@ Pick one provider first, validate responses, then expand later.
 <div class="progress-bar">
   <div class="step done"><div class="dot"></div> Get Server</div>
   <div class="step done"><div class="dot"></div> Install</div>
-  <div class="step active"><div class="dot"></div> Choose Model</div>
+  <div class="step active"><span class="lob l1">🦞</span><span class="lob l2">🦞</span><span class="lob l3">🦞</span><span class="lob l4">🦞</span><span class="lob l5">🦞</span><div class="dot"></div> Choose Model</div>
   <div class="step"><div class="dot"></div> Setup Discord</div>
 </div>
 
@@ -317,7 +334,7 @@ The onboarding wizard walks you through the channel setup.
   <div class="step done"><div class="dot"></div> Get Server</div>
   <div class="step done"><div class="dot"></div> Install</div>
   <div class="step done"><div class="dot"></div> Choose Model</div>
-  <div class="step active"><div class="dot"></div> Setup Discord</div>
+  <div class="step active"><span class="lob l1">🦞</span><span class="lob l2">🦞</span><span class="lob l3">🦞</span><span class="lob l4">🦞</span><span class="lob l5">🦞</span><div class="dot"></div> Setup Discord</div>
 </div>
 
 <!--
