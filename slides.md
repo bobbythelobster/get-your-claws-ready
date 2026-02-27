@@ -479,8 +479,6 @@ This weekend is about building, shipping, and connecting with the SD developer c
 
 ---
 
-# Thank You
+<!-- _class: centered -->
 
-You are ready to ship OpenClaw.
-
-Questions?
+Back to main slides
