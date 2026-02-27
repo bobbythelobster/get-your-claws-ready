@@ -27,6 +27,8 @@ style: |
     opacity: 0.8;
   }
 
+
+
   h1,
   h2,
   h3,
@@ -452,6 +454,27 @@ Speaker notes:
 openclaw config set 'channels.discord.guilds.1199917708955889784.policy' '"allow"' --json
 openclaw config set 'channels.discord.guilds.1199917708955889784.requireMention' 'false' --json
 openclaw gateway restart
+-->
+
+---
+
+![bg 65%](./openclaw-weekend-hero.jpg)
+
+<!--
+SPEAKER NOTES (Travis):
+
+Welcome to OpenClaw SD Weekend! Here's what's coming up:
+
+SATURDAY:
+- Morning: North County AI Coffee Chat at Pier View Coffee in Oceanside (8:30-10:30 AM)
+- Afternoon: AI Tinkerers Global Unhackathon in Rancho Bernardo (1-6 PM) — synchronized build session across 24 cities worldwide. Pizza, snacks, and a Mac Mini giveaway for best hack.
+- Evening: Molts & Malts — post-building drinks with San Diego AI Circle (6:30-9 PM)
+
+SUNDAY:
+- Morning: SDx Deep Dives in Sorrento Valley (10 AM-1 PM) — three parallel tracks: Advanced Agent Design, Business Automation, and Security & Compliance
+- Afternoon: SDx OpenClaw Showcase (2-5 PM) — five-minute demos, real stories, no pitches. Another Mac Mini giveaway. Food and drinks provided.
+
+This weekend is about building, shipping, and connecting with the SD developer community. Let's go!
 -->
 
 ---
