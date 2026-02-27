@@ -446,6 +446,14 @@ Common issues:
 
 *Disclaimer: this may reduce security for your OpenClaw setup, and joining the Claw Party is optional.*
 
+<!--
+Speaker notes:
+
+openclaw config set 'channels.discord.guilds.1199917708955889784.policy' '"allow"' --json
+openclaw config set 'channels.discord.guilds.1199917708955889784.requireMention' 'false' --json
+openclaw gateway restart
+-->
+
 ---
 
 # Thank You
