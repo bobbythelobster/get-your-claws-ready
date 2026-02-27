@@ -244,7 +244,7 @@ Scan the QR code to join the DEVx Discord server.
 Head to the **#clawclub** channel to follow along with the workshop, ask questions, and share your progress.
 
 <div class="qr-float">
-  <img src="./discord-qr.jpg" alt="DEVx Discord invite QR" width="285" />
+  <img src="./discord-qr.png" alt="DEVx Discord invite QR" width="285" />
 </div>
 
 ---
