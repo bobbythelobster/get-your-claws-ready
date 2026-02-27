@@ -214,7 +214,8 @@ Pick a region close to you, add your SSH key, and confirm you can connect from y
 </div>
 
 <div class="qr-float">
-  <img src="./qrcode.png" alt="Hostinger QR code" width="285" />
+  <img src="./claws-ready-qr.png" alt="Hostinger QR code" width="285" />
+  <p style="margin: 12px 0 0; text-align: center; font-weight: 700; font-size: 26px;">bit.ly/ClawsReady</p>
 </div>
 
 ---
