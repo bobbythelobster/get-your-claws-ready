@@ -247,6 +247,7 @@ Head to the **#clawclub** channel to follow along with the workshop, ask questio
 
 <div class="qr-float">
   <img src="./discord-qr.png" alt="DEVx Discord invite QR" width="285" />
+  <p style="text-align:center; font-size:14px; margin-top:8px; opacity:0.8;">https://bit.ly/DEVxDiscord</p>
 </div>
 
 ---
