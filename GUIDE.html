@@ -505,10 +505,11 @@
       
       <div class="tip">
         <div class="tip-title">💡 SSH Key Setup</div>
-        <p>If you don't have an SSH key, generate one with:</p>
-        <pre><code>ssh-keygen -t ed25519 -C "your@email.com"</code></pre>
+        <p>If you don't have an SSH key, generate one:</p>
+        <pre><code>mkdir -p ~/.ssh && cd ~/.ssh
+ssh-keygen -t ed25519 -C "your@email.com"</code></pre>
         <p>Then copy your public key:</p>
-        <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+        <pre><code>cat id_ed25519.pub</code></pre>
         <p>Paste this into Hostinger's SSH key section during VPS setup.</p>
       </div>
       
