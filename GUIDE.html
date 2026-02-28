@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Claws Ready - OpenClaw Workshop Guide</title>
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --secondary: #1a1a2e;
+      --accent: #ff9f45;
+      --success: #45df84;
+      --bg: #0f0f1a;
+      --card: #1a1a2e;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.7);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 0;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 24px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    
+    .hero .subtitle {
+      font-size: 1.3rem;
+      color: var(--muted);
+      position: relative;
+    }
+    
+    .hero .lobster {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 16px;
+    }
+    
+    /* Progress Tracker */
+    .progress-tracker {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 48px 0;
+      flex-wrap: wrap;
+    }
+    
+    .progress-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--card);
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .progress-step .num {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      font-size: 0.85rem;
+    }
+    
+    /* Sections */
+    .section {
+      margin-bottom: 56px;
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .section-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 16px;
+      font-size: 1.8rem;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+    }
+    
+    .section-goal {
+      background: rgba(69, 223, 132, 0.1);
+      border-left: 4px solid var(--success);
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 0 12px 12px 0;
+    }
+    
+    .section-goal strong {
+      color: var(--success);
+    }
+    
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Code Blocks */
+    pre {
+      background: #0d0d14;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+      margin: 16px 0;
+      font-family: 'SF Mono', Monaco, 'Andale Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    code {
+      font-family: inherit;
+      color: #ff9f45;
+    }
+    
+    pre code {
+      color: #f4f7ff;
+    }
+    
+    .code-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Lists */
+    ul, ol {
+      margin: 16px 0;
+      padding-left: 24px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+    }
+    
+    li::marker {
+      color: var(--primary);
+    }
+    
+    /* Steps */
+    .steps {
+      counter-reset: step;
+    }
+    
+    .step {
+      position: relative;
+      padding-left: 48px;
+      margin-bottom: 24px;
+    }
+    
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    
+    /* Tips */
+    .tip {
+      background: rgba(255, 159, 69, 0.1);
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 12px 12px 0;
+    }
+    
+    .tip-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    /* Warning */
+    .warning {
+      background: rgba(255, 107, 53, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 16px 20px;
+      margin: 20px 0;
+      border-radius: 0 12px 12px 0;
+    }
+    
+    .warning-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    /* Success */
+    .success-box {
+      background: linear-gradient(135deg, rgba(69, 223, 132, 0.1), rgba(147, 255, 192, 0.05));
+      border: 2px solid var(--success);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      margin: 48px 0;
+    }
+    
+    .success-box h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    
+    .success-box .lobster {
+      font-size: 4rem;
+      margin-bottom: 16px;
+    }
+    
+    /* Troubleshooting */
+    .troubleshoot-item {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .troubleshoot-item .problem {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    .troubleshoot-item .solution {
+      color: var(--muted);
+    }
+    
+    .troubleshoot-item code {
+      font-size: 0.85rem;
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 60px;
+      color: var(--muted);
+    }
+    
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* QR Link */
+    .qr-section {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      background: var(--card);
+      padding: 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+    }
+    
+    .qr-section img {
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+    }
+    
+    .qr-section .info {
+      flex: 1;
+    }
+    
+    .qr-section .link {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .progress-tracker {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .qr-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      pre {
+        padding: 16px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <span class="lobster">🦞</span>
+      <h1>Get Your Claws Ready!</h1>
+      <p class="subtitle">OpenClaw Workshop Guide — From Zero to Live AI Agent</p>
+    </div>
+    
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+      <div class="progress-step"><span class="num">1</span> Get Server</div>
+      <div class="progress-step"><span class="num">2</span> Install</div>
+      <div class="progress-step"><span class="num">3</span> Choose Model</div>
+      <div class="progress-step"><span class="num">4</span> Setup Discord</div>
+    </div>
+    
+    <!-- Introduction -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <h2 class="section-title">Workshop Goal</h2>
+      </div>
+      <p>By the end of this guide, you'll have OpenClaw running live with Discord integration. We'll move from server setup to an active AI agent you can chat with.</p>
+      
+      <div class="card">
+        <h3>📋 What You'll Need</h3>
+        <ul>
+          <li>A computer with terminal access</li>
+          <li>An SSH client (built into macOS/Linux, use PowerShell or WSL on Windows)</li>
+          <li>~30 minutes of time</li>
+          <li>A credit card for VPS hosting (Hostinger) and AI API access</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Join Discord First -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💬</div>
+        <h2 class="section-title">Join the DEVx Discord</h2>
+      </div>
+      <p>Before we start, join the community where you can ask questions and share your progress.</p>
+      
+      <div class="qr-section">
+        <img src="./discord-qr.png" alt="DEVx Discord QR Code">
+        <div class="info">
+          <p><strong>Scan the QR code</strong> or visit:</p>
+          <p class="link">https://bit.ly/DEVxDiscord</p>
+          <p style="margin-top: 12px; color: var(--muted);">Head to the <strong>#clawclub</strong> channel to follow along, ask questions, and share your progress.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Step 1: Get Server -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🖥️</div>
+        <h2 class="section-title">Step 1: Get Your Server</h2>
+      </div>
+      
+      <p>You need a cloud server (VPS) to run OpenClaw. We'll use Hostinger for this workshop, but any Ubuntu 24.04 VPS works.</p>
+      
+      <div class="card">
+        <h3>📝 Sign Up for Hostinger VPS</h3>
+        <div class="steps">
+          <div class="step">
+            <p><strong>Create an account</strong> at <a href="https://bit.ly/ClawsReady" style="color: var(--accent);">bit.ly/ClawsReady</a></p>
+          </div>
+          <div class="step">
+            <p><strong>Choose a VPS plan</strong> — the KVM 2 plan (2 vCPU, 8GB RAM) is sufficient to start</p>
+          </div>
+          <div class="step">
+            <p><strong>Select a region</strong> close to you for lower latency</p>
+          </div>
+          <div class="step">
+            <p><strong>Choose Ubuntu 24.04</strong> as the operating system</p>
+          </div>
+          <div class="step">
+            <p><strong>Add your SSH key</strong> during setup (recommended) or use password auth initially</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-title">💡 SSH Key Setup</div>
+        <p>If you don't have an SSH key, generate one with:</p>
+        <pre><code>ssh-keygen -t ed25519 -C "your@email.com"</code></pre>
+        <p>Then copy your public key:</p>
+        <pre><code>cat ~/.ssh/id_ed25519.pub</code></pre>
+        <p>Paste this into Hostinger's SSH key section during VPS setup.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🔌 Connect to Your Server</h3>
+        <p>Once your VPS is running, connect via SSH:</p>
+        <pre><code>ssh root@YOUR_VPS_IP_ADDRESS</code></pre>
+        <p>If you set up SSH keys, you'll connect automatically. Otherwise, enter your root password.</p>
+      </div>
+      
+      <div class="section-goal">
+        <strong>🎯 Goal:</strong> You should now be SSH'd into your Hostinger VPS, seeing a shell prompt like <code>root@hostname:~#</code>
+      </div>
+    </div>
+    
+    <!-- Step 2: Install -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">📦</div>
+        <h2 class="section-title">Step 2: Install OpenClaw</h2>
+      </div>
+      
+      <p>The install script handles everything: Node.js, dependencies, and the onboarding wizard.</p>
+      
+      <div class="card">
+        <h3>🚀 Run the Install Script</h3>
+        <p class="code-label">Paste this into your VPS terminal:</p>
+        <pre><code>curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+        <p>This will take a few minutes. Once complete, you'll have the <code>openclaw</code> command available.</p>
+      </div>
+      
+      <div class="card">
+        <h3>⚙️ If Node.js Wasn't Installed</h3>
+        <p>If the install script didn't provision Node.js, run this fallback:</p>
+        <pre><code>curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+sudo apt-get install -y nodejs
+node -v && npm -v</code></pre>
+      </div>
+      
+      <div class="card">
+        <h3>🎯 Run Onboarding</h3>
+        <p>Start the configuration wizard:</p>
+        <pre><code>openclaw onboard --install-daemon</code></pre>
+        <p>This will:</p>
+        <ul>
+          <li>Configure your AI model provider (we'll do this in Step 3)</li>
+          <li>Set up authentication</li>
+          <li>Configure gateway settings</li>
+          <li>Install the daemon service (runs in background)</li>
+        </ul>
+      </div>
+      
+      <div class="section-goal">
+        <strong>🎯 Goal:</strong> You should reach the onboarding wizard prompts. Don't complete them yet — we'll configure the model in Step 3.
+      </div>
+    </div>
+    
+    <!-- Step 3: Choose Model -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🧠</div>
+        <h2 class="section-title">Step 3: Choose Your Model</h2>
+      </div>
+      
+      <p>OpenClaw needs an AI model provider — this is the "brain" behind your agent. Pick one to start, you can add more later.</p>
+      
+      <div class="card">
+        <h3>🥇 Option A: OpenAI Codex (Recommended)</h3>
+        <p>Best value for heavy usage: <strong>$200/month unlimited</strong></p>
+        <div class="steps">
+          <div class="step">
+            <p>Go to <a href="https://platform.openai.com" style="color: var(--accent);">platform.openai.com</a></p>
+          </div>
+          <div class="step">
+            <p>Create an account or sign in</p>
+          </div>
+          <div class="step">
+            <p>Navigate to <strong>API Keys</strong> and create a new key</p>
+          </div>
+          <div class="step">
+            <p>Copy the key — you'll paste it during onboarding</p>
+          </div>
+        </div>
+        <p>During onboarding, select <strong>OpenAI Codex</strong> as your provider and paste your API key.</p>
+      </div>
+      
+      <div class="card">
+        <h3>🥈 Option B: Z.ai GLM 4.7 (Budget)</h3>
+        <p>Lower-cost alternative with strong coding capabilities.</p>
+        <div class="steps">
+          <div class="step">
+            <p>Sign up at <a href="https://z.ai" style="color: var(--accent);">z.ai</a></p>
+          </div>
+          <div class="step">
+            <p>Get your API key from the dashboard</p>
+          </div>
+          <div class="step">
+            <p>Select <strong>Z.ai</strong> during onboarding and paste your key</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>🥉 Other Options</h3>
+        <ul>
+          <li><strong>Anthropic Claude</strong> — Use your existing Claude subscription</li>
+          <li><strong>Venice.ai</strong> — Privacy-focused, uncensored models</li>
+          <li><strong>NanoGPT</strong> — Pay-as-you-go access to multiple models</li>
+        </ul>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-title">💡 Start With One</div>
+        <p>Configure one provider first and validate it works. You can add fallback models and more providers later via <code>openclaw config</code>.</p>
+      </div>
+      
+      <div class="section-goal">
+        <strong>🎯 Goal:</strong> Complete the model configuration step in onboarding. Your agent now has a brain!
+      </div>
+    </div>
+    
+    <!-- Step 4: Setup Discord -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">💬</div>
+        <h2 class="section-title">Step 4: Setup Discord</h2>
+      </div>
+      
+      <p>Connect OpenClaw to Discord so you can chat with your agent from anywhere.</p>
+      
+      <div class="card">
+        <h3>🤖 Create a Discord Bot</h3>
+        <div class="steps">
+          <div class="step">
+            <p>Go to <a href="https://discord.com/developers/applications" style="color: var(--accent);">Discord Developer Portal</a></p>
+          </div>
+          <div class="step">
+            <p>Click <strong>New Application</strong> and give it a name (e.g., "My Claw")</p>
+          </div>
+          <div class="step">
+            <p>Navigate to <strong>Bot</strong> in the left sidebar</p>
+          </div>
+          <div class="step">
+            <p>Click <strong>Add Bot</strong>, then <strong>Reset Token</strong></p>
+          </div>
+          <div class="step">
+            <p><strong>Copy the token</strong> — you'll paste this during onboarding</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>🔗 Invite Bot to Your Server</h3>
+        <div class="steps">
+          <div class="step">
+            <p>In Developer Portal, go to <strong>OAuth2 → URL Generator</strong></p>
+          </div>
+          <div class="step">
+            <p>Check the <strong>bot</strong> scope</p>
+          </div>
+          <div class="step">
+            <p>Under <strong>Bot Permissions</strong>, select:</p>
+            <ul>
+              <li>Read Messages/View Channels</li>
+              <li>Send Messages</li>
+              <li>Read Message History</li>
+            </ul>
+          </div>
+          <div class="step">
+            <p>Copy the generated URL and open it in your browser</p>
+          </div>
+          <div class="step">
+            <p>Select your server and authorize the bot</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>🔐 Enable Message Content Intent</h3>
+        <p>Required for your bot to read your messages:</p>
+        <div class="steps">
+          <div class="step">
+            <p>In Developer Portal, go to <strong>Bot</strong></p>
+          </div>
+          <div class="step">
+            <p>Scroll to <strong>Privileged Gateway Intents</strong></p>
+          </div>
+          <div class="step">
+            <p>Enable <strong>Message Content Intent</strong></p>
+          </div>
+          <div class="step">
+            <p>Save changes</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>📱 DM Your Bot</h3>
+        <p>To send direct messages to your bot:</p>
+        <div class="steps">
+          <div class="step">
+            <p>In Developer Portal, go to <strong>General Information</strong></p>
+          </div>
+          <div class="step">
+            <p>Copy the <strong>Application ID</strong></p>
+          </div>
+          <div class="step">
+            <p>Navigate to <code>https://discord.com/users/&lt;APPLICATION_ID&gt;</code></p>
+          </div>
+          <div class="step">
+            <p>Click <strong>Message</strong> to start a DM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>✅ Complete Onboarding</h3>
+        <p>Back in your VPS terminal, continue the onboarding:</p>
+        <ul>
+          <li>Select <strong>Discord</strong> as a channel</li>
+          <li>Paste your bot token</li>
+          <li>When prompted, DM your bot — it will reply with a pairing code</li>
+          <li>Approve the pairing:</li>
+        </ul>
+        <pre><code>openclaw pairing approve discord &lt;PAIRING_CODE&gt;</code></pre>
+      </div>
+      
+      <div class="section-goal">
+        <strong>🎯 Goal:</strong> Send a DM to your bot on Discord and receive a response. Your agent is live!
+      </div>
+    </div>
+    
+    <!-- Success -->
+    <div class="success-box">
+      <div class="lobster">🦞</div>
+      <h2>You've Got the Claw!</h2>
+      <p style="font-size: 1.2rem; margin-top: 12px;">Your agent is live. You just built something powerful.</p>
+      <p style="color: var(--muted); margin-top: 8px;">Welcome to the future of personal AI.</p>
+    </div>
+    
+    <!-- Verification -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">✅</div>
+        <h2 class="section-title">Verification Checklist</h2>
+      </div>
+      
+      <div class="card">
+        <h3>🔍 Confirm Everything Works</h3>
+        <ul>
+          <li>✅ SSH access works and server is reachable</li>
+          <li>✅ Gateway is running:</li>
+        </ul>
+        <pre><code>openclaw gateway status</code></pre>
+        <ul>
+          <li>✅ Auth is configured from onboarding</li>
+          <li>✅ DM your bot on Discord and confirm a response</li>
+        </ul>
+      </div>
+      
+      <div class="tip">
+        <div class="tip-title">🩺 Not Working?</div>
+        <p>Run the diagnostic tool:</p>
+        <pre><code>openclaw doctor</code></pre>
+        <p>This will check your configuration and identify issues.</p>
+      </div>
+    </div>
+    
+    <!-- Troubleshooting -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🔧</div>
+        <h2 class="section-title">Troubleshooting</h2>
+      </div>
+      
+      <div class="troubleshoot-item">
+        <div class="problem">❌ <code>openclaw: command not found</code></div>
+        <div class="solution">Restart your shell session or run <code>source ~/.bashrc</code> (or <code>~/.zshrc</code>). If that doesn't work, verify the install path is in your PATH.</div>
+      </div>
+      
+      <div class="troubleshoot-item">
+        <div class="problem">❌ Gateway not running</div>
+        <div class="solution">Rerun onboarding with daemon install: <code>openclaw onboard --install-daemon</code></div>
+      </div>
+      
+      <div class="troubleshoot-item">
+        <div class="problem">❌ Gateway unreachable</div>
+        <div class="solution">Verify host/port in config, check local firewall rules: <code>sudo ufw status</code></div>
+      </div>
+      
+      <div class="troubleshoot-item">
+        <div class="problem">❌ Bot doesn't respond to DMs</div>
+        <div class="solution">
+          <ol>
+            <li>Check Message Content Intent is enabled</li>
+            <li>Verify the bot token is correct in config</li>
+            <li>Check pairing was approved: <code>openclaw pairing list</code></li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="troubleshoot-item">
+        <div class="problem">❌ Channel test fails</div>
+        <div class="solution">Confirm channel config and destination target in <code>openclaw config</code></div>
+      </div>
+    </div>
+    
+    <!-- Claw Party -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🎉</div>
+        <h2 class="section-title">Join the Claw Party!</h2>
+      </div>
+      
+      <p>Ready to let your bot interact with other bots? Join the fun:</p>
+      
+      <div class="card">
+        <h3>🦞 Party Rules</h3>
+        <ol>
+          <li>Share your bot's invite URL in <code>#openclaw</code> on Discord</li>
+          <li>Tell your bot to <code>allowBots</code> in Discord config</li>
+          <li>Tell your bot to allow the <code>#onlyclaw</code> channel</li>
+          <li>Let the claws engage!</li>
+        </ol>
+        <pre><code>openclaw config set 'channels.discord.allowBots' true
+openclaw config set 'channels.discord.guilds.1199917708955889784.policy' allow
+openclaw config set 'channels.discord.guilds.1199917708955889784.requireMention' false
+openclaw gateway restart</code></pre>
+      </div>
+      
+      <div class="warning">
+        <div class="warning-title">⚠️ Security Note</div>
+        <p>Enabling <code>allowBots</code> reduces security for your OpenClaw setup. Joining the Claw Party is optional — only do this if you understand the implications.</p>
+      </div>
+    </div>
+    
+    <!-- What's Next -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <h2 class="section-title">What's Next?</h2>
+      </div>
+      
+      <div class="card">
+        <h3>📚 Explore More</h3>
+        <ul>
+          <li><strong>Skills:</strong> Extend your agent with custom workflows</li>
+          <li><strong>Channels:</strong> Add Telegram, Signal, iMessage (BlueBubbles)</li>
+          <li><strong>Memory:</strong> Your agent remembers conversations and context</li>
+          <li><strong>Cron Jobs:</strong> Schedule automated tasks</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h3>🔗 Resources</h3>
+        <ul>
+          <li><a href="https://docs.openclaw.ai" style="color: var(--accent);">OpenClaw Documentation</a></li>
+          <li><a href="https://github.com/openclaw/openclaw" style="color: var(--accent);">GitHub Repository</a></li>
+          <li><a href="https://discord.com/invite/clawd" style="color: var(--accent);">OpenClaw Discord</a></li>
+          <li><a href="https://clawhub.com" style="color: var(--accent);">ClawHub Skills Marketplace</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <p>🦞 <strong>OpenClaw Workshop</strong> — DEVx San Diego</p>
+      <p style="margin-top: 8px;"><a href="https://bit.ly/DEVxDiscord">Join DEVx Discord</a> • <a href="https://openclaw.ai">openclaw.ai</a></p>
+    </div>
+  </div>
+</body>
+</html>
