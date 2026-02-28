@@ -276,6 +276,31 @@ Pick a region close to you, add your SSH key, and confirm you can connect from y
   <p style="margin: 12px 0 0; text-align: center; font-weight: 700; font-size: 26px;">bit.ly/ClawsReady</p>
 </div>
 
+<!--
+Speaker notes:
+
+After paying and launching the VPS, go to Settings -> SSH Keys -> [+ Add SSH Key].
+
+Generate a new key pair if you don't have one:
+ssh-keygen -t ed25519 -C "your_email@example.com"
+Press Enter to accept the default path, or give it a custom filename.
+Set a passphrase when prompted (recommended).
+
+Copy your public key (replace the filename if you used a custom name):
+Mac/Linux: cat ~/.ssh/id_ed25519.pub
+Windows:   type C:\Users\your_username\.ssh\id_ed25519.pub
+Copy the full line — it starts with ssh-ed25519 and ends with your email.
+
+Paste that into the SSH Key field in Hostinger and save.
+
+Then connect to your server:
+ssh root@<your-vps-ip>
+Enter your SSH passphrase if prompted.
+
+You know you're in when your prompt changes to:
+root@<your-server-identifier>:~#
+-->
+
 ---
 
 # Step 2: Install
@@ -301,6 +326,17 @@ Speaker notes:
 Run the install script:
 curl -fsSL https://openclaw.ai/install.sh | bash
 
+You'll see a banner first:
+"I'll butter your workflow like a lobster roll: messy, delicious, effective."
+Then it detects your OS and starts installing Node.js and build tools.
+Progress shows as dots that turn into checkmarks — takes a few minutes.
+
+When prompted:
+"I understand this is personal-by-default and shared/multi-user use requires lock-down. Continue?"
+-> Yes
+
+Then select QuickStart in the onboarding wizard.
+
 If Node.js was not provisioned during install, run this fallback:
 curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -320,7 +356,8 @@ openclaw onboard --install-daemon
 
 Pick your AI model provider — this is the brain behind the claw.
 
-For a low-cost start, use an **OpenAI Codex** subscription.
+For a flexible start, use **OpenRouter** — one API key, many models, pay per token.
+For a low-cost flat rate, use an **OpenAI Codex** subscription.
 Another budget option is a **Z.ai GLM 4.7** subscription.
 
 Pick one provider first, validate responses, then expand later.
@@ -339,7 +376,13 @@ Pick one provider first, validate responses, then expand later.
 <!--
 Speaker notes:
 
-During onboarding, you'll be prompted to configure your model provider.
+During onboarding, you'll be prompted to select your model/auth provider.
+
+For OpenRouter (recommended for most people starting out):
+- Sign up at openrouter.ai and create an API key
+- When prompted "How do you want to provide API key?" -> Paste key
+- Paste your OpenRouter key
+- Select "Keep current (openrouter/auto)" for the model
 
 For OpenAI Codex:
 - Go to platform.openai.com and create an API key
@@ -380,11 +423,21 @@ If you skipped it earlier, run:
 openclaw config
 
 Discord bot setup:
-1. Discord Developer Portal -> Applications -> New Application.
-2. Bot -> Add Bot -> Reset Token -> copy token -> paste into onboarding.
-3. OAuth2 -> URL Generator -> scope `bot` -> invite to your server.
-4. Enable Message Content Intent:
-   Bot -> Privileged Gateway Intents -> Message Content Intent.
+1. Go to Discord Developer Portal -> Applications -> New Application.
+2. Name your app, hit Create.
+3. In the left menu, click Bot -> scroll down -> Reset Token -> accept prompts -> copy the token.
+4. Back in your terminal (SSH'd into VPS), paste the token when prompted.
+5. Configure Discord Channel Access -> Yes -> select Allowlist or Open.
+6. "Configure Skills now?" -> No
+7. "Enable Hooks?" -> Skip for now (Mac: spacebar + Enter)
+8. When asked "How do you want to hatch the bot?" -> Hatch in TUI (recommended).
+
+Enable Message Content Intent:
+- In Developer Portal -> Bot -> scroll to Privileged Gateway Intents -> toggle Message Content Intent on -> Save Changes.
+
+Invite your bot to your server:
+- Developer Portal -> OAuth2 -> URL Generator -> check only "bot" -> copy the generated URL.
+- Open that URL in a browser, select your server, and authorize.
 
 To DM your bot:
 - In Developer Portal, open General Information tab.
@@ -392,10 +445,11 @@ To DM your bot:
 - Navigate to https://discord.com/users/<application-id>
 - Send a direct message to your bot.
 
-Pairing:
-- When prompted, copy the pairing code from Discord.
-- Approve pairing from your VPS with:
+If you get "access not configured" in Discord:
+- Copy the pairing code from the bot's response.
+- Run from your VPS:
   openclaw pairing approve discord <pairing code>
+- Try DMing again — it should respond now.
 -->
 
 ---
