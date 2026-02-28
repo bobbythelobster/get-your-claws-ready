@@ -300,18 +300,6 @@ Speaker notes:
 
 Run the install script:
 curl -fsSL https://openclaw.ai/install.sh | bash
-
-If Node.js was not provisioned during install, run this fallback:
-curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-sudo apt-get install -y nodejs
-node -v && npm -v
-
-Then run onboarding with daemon install:
-openclaw onboard --install-daemon
-
-This configures auth, gateway settings, and installs the daemon service.
-If you need to re-enter onboarding later:
-openclaw onboard --install-daemon
 -->
 
 ---
@@ -358,7 +346,7 @@ The onboarding wizard will walk you through entering the API key.
 
 Connect OpenClaw to Discord so you can chat with your agent.
 
-Create a Discord bot, grab the token, and invite it to your server.
+Create a Discord bot, grab the token, and dm it.
 The onboarding wizard walks you through the channel setup.
 
 **🎯 Goal: Receive a response from your agent over Discord**
@@ -382,8 +370,7 @@ openclaw config
 Discord bot setup:
 1. Discord Developer Portal -> Applications -> New Application.
 2. Bot -> Add Bot -> Reset Token -> copy token -> paste into onboarding.
-3. OAuth2 -> URL Generator -> scope `bot` -> invite to your server.
-4. Enable Message Content Intent:
+3. Enable Message Content Intent:
    Bot -> Privileged Gateway Intents -> Message Content Intent.
 
 To DM your bot:
@@ -444,7 +431,7 @@ Common issues:
 
 - Share your bot's invite URL in `#openclaw` on Discord.
 - In Discord config, tell your bot to `allowBots`.
-- Tell your bot to allow the `#onlyclaw` channel.
+- Tell your bot to allow the `#onlyclaws` channel.
 - Let the claws engage!
 
 *Disclaimer: this may reduce security for your OpenClaw setup, and joining the Claw Party is optional.*
@@ -452,9 +439,11 @@ Common issues:
 <!--
 Speaker notes:
 
-openclaw config set 'channels.discord.guilds.1199917708955889784.policy' '"allow"' --json
-openclaw config set 'channels.discord.guilds.1199917708955889784.requireMention' 'false' --json
+```shell
+openclaw config set channels.discord.allowBots 'true' --json
+openclaw config set channels.discord.guilds '{"1199917708955889784": {"channels": {"1475543232573341940": {"allow": true,"requireMention": false}}}}' --json
 openclaw gateway restart
+```
 -->
 
 ---
