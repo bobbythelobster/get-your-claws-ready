@@ -279,6 +279,10 @@ Pick a region close to you, add your SSH key, and confirm you can connect from y
 <!--
 Speaker notes:
 
+Message bit.ly/ClawsReady link in discord.
+
+Feel free to share image deck.
+
 After paying and launching the VPS, go to Settings -> SSH Keys -> [+ Add SSH Key].
 
 Generate a new key pair if you don't have one:
