@@ -22,6 +22,11 @@
       box-sizing: border-box;
     }
     
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: var(--bg);
@@ -181,6 +186,7 @@
       margin: 16px 0;
       font-family: 'SF Mono', Monaco, 'Andale Mono', monospace;
       font-size: 0.9rem;
+      max-width: 100%;
     }
     
     code {
@@ -190,6 +196,7 @@
     
     pre code {
       color: #f4f7ff;
+      white-space: pre;
     }
     
     .code-label {
@@ -365,9 +372,21 @@
         font-size: 2.5rem;
       }
       
+      .hero .subtitle {
+        font-size: 1rem;
+        padding: 0 16px;
+      }
+      
       .progress-tracker {
         flex-direction: column;
         align-items: stretch;
+        gap: 6px;
+      }
+      
+      .progress-step {
+        justify-content: center;
+        font-size: 0.85rem;
+        padding: 10px 16px;
       }
       
       .qr-section {
@@ -378,6 +397,17 @@
       pre {
         padding: 16px;
         font-size: 0.8rem;
+        max-width: calc(100vw - 48px);
+      }
+      
+      .section-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.4rem;
+      }
+      
+      .section-title {
+        font-size: 1.4rem;
       }
     }
   </style>
