@@ -401,7 +401,7 @@ The onboarding wizard will walk you through entering the API key.
 
 Connect OpenClaw to Discord so you can chat with your agent.
 
-Create a Discord bot, grab the token, and invite it to your server.
+Create a Discord bot, grab the token, and dm it.
 The onboarding wizard walks you through the channel setup.
 
 **🎯 Goal: Receive a response from your agent over Discord**
@@ -434,10 +434,6 @@ Discord bot setup:
 
 Enable Message Content Intent:
 - In Developer Portal -> Bot -> scroll to Privileged Gateway Intents -> toggle Message Content Intent on -> Save Changes.
-
-Invite your bot to your server:
-- Developer Portal -> OAuth2 -> URL Generator -> check only "bot" -> copy the generated URL.
-- Open that URL in a browser, select your server, and authorize.
 
 To DM your bot:
 - In Developer Portal, open General Information tab.
@@ -498,7 +494,7 @@ Common issues:
 
 - Share your bot's invite URL in `#openclaw` on Discord.
 - In Discord config, tell your bot to `allowBots`.
-- Tell your bot to allow the `#onlyclaw` channel.
+- Tell your bot to allow the `#onlyclaws` channel.
 - Let the claws engage!
 
 *Disclaimer: this may reduce security for your OpenClaw setup, and joining the Claw Party is optional.*
@@ -506,9 +502,15 @@ Common issues:
 <!--
 Speaker notes:
 
-openclaw config set 'channels.discord.guilds.1199917708955889784.policy' '"allow"' --json
-openclaw config set 'channels.discord.guilds.1199917708955889784.requireMention' 'false' --json
+```shell
+openclaw config set channels.discord.allowBots 'true' --json
+openclaw config set channels.discord.guilds '{"1199917708955889784": {"channels": {"1475543232573341940": {"allow": true,"requireMention": false}}}}' --json
 openclaw gateway restart
+```
+
+Invite your bot to your server:
+- Developer Portal -> OAuth2 -> URL Generator -> check only "bot" -> copy the generated URL.
+- Open that URL in a browser, select your server, and authorize.
 -->
 
 ---
