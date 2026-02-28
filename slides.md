@@ -422,9 +422,6 @@ In onboarding, select Channels -> Configure/link -> Discord.
 If you skipped it earlier, run:
 openclaw config
 
-IMPORTANT: You must have your own Discord server before this step.
-Create one now if you haven't already.
-
 Discord bot setup:
 1. Go to Discord Developer Portal -> Applications -> New Application.
 2. Name your app, hit Create.
